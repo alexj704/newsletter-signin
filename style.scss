@@ -1,0 +1,126 @@
+@mixin mobile() {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --tomato: hsl(4, 100%, 67%);
+  --charcoal-grey: hsl(235, 18%, 26%);
+  --dark-slate-grey: hsl(234, 29%, 20%);
+  --grey: hsl(231, 7%, 60%);
+  --white: #fff;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: var(--charcoal-grey);
+  height: 100vh;
+  width: 100vw;
+  @include desktop() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+button {
+  width: 100%;
+  padding: 1rem 0;
+  border: none;
+  border-radius: 10px;
+  background: var(--dark-slate-grey);
+  color: var(--white);
+  font-weight: 700;
+  &:hover,
+  &:focus {
+    background: linear-gradient(to right, red, var(--tomato));
+    box-shadow: 0px 10px 30px 2px var(--tomato);
+    outline: none;
+  }
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  border: solid 1px lightgrey;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  &:focus {
+    outline: solid var(--tomato);
+  }
+}
+
+.card {
+  height: 100vh;
+  width: 100%;
+  background: var(--white);
+  @include desktop() {
+    max-height: 600px;
+    max-width: 800px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .img-container {
+    width: 100%;
+    background: no-repeat;
+    @include mobile() {
+      min-height: 284px;
+      background-image: url("./assets/images/illustration-sign-up-mobile.svg");
+      margin-bottom: 1.5rem;
+    }
+    @include desktop() {
+      height: 100%;
+      background-image: url("./assets/images/illustration-sign-up-desktop.svg");
+    }
+  }
+  .text-container {
+    margin: 0 1.5rem;
+    .text {
+      margin-bottom: 1.5rem;
+      h1 {
+        font-size: 38px;
+        color: var(--charcoal-grey);
+        margin-bottom: 1.5rem;
+      }
+      & > p {
+        margin-bottom: 1.5rem;
+      }
+      .argument-container {
+        display: flex;
+        img {
+          align-self: start;
+          margin-right: 1rem;
+        }
+        p {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    .input {
+      .input-text {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--charcoal-grey);
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        .input-error {
+          color: var(--tomato);
+        }
+      }
+    }
+  }
+}
